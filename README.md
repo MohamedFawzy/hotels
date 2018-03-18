@@ -1,6 +1,13 @@
 # Hotels
 Hotels service
 
+# Description :
+Hotels CRUD service api . 
+
+
+# Perquisite
+- Docker installed on your machine .
+
 
 
 
