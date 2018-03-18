@@ -5,7 +5,7 @@ Hotels service
 Hotels CRUD service api . 
 - Consul used to register services such as php-fpm , nginx
 - Link each service to service registry .
-- Monitory health check and reload service if it's down .
+- Monitor health check and reload service if it's down .
 
 # Perquisite
 - Docker installed on your machine .
