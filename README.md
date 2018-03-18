@@ -13,6 +13,7 @@ Hotels CRUD service api .
 
 # Install
 - `git clone https://github.com/MohamedFawzy/hotels.git`
+- `cd hotels`
 - `cd docker`
 - `docker-compose up`
 - You should see the following image
@@ -20,6 +21,8 @@ Hotels CRUD service api .
 - Open your browser at `http://localhost:8500` you should see registered services up and running .
 ![alt text](https://raw.githubusercontent.com/MohamedFawzy/hotels/master/images/consul-interface.png)
 
+- Open docker container for php-fpm with the following command `docker exec -it docker_microservice_hotels_fpm_1 /bin/bash`
+- Install composer packages `composer install`
 
 
 
