@@ -6,7 +6,7 @@ php:
   - 7.1
 
 before_install:
-  - pecl install -f mongo-1.4.0
+  - pecl install mongodb
   - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 # Commands to be run before your environment runs.
