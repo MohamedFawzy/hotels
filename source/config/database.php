@@ -51,6 +51,18 @@ return [
             ]
         ],
 
+        'testing' => [
+            'driver'   => 'mongodb',
+            'host'     => env('DB_TEST_HOST', 'localhost'),
+            'port'     => env('DB_TEST_PORT', 27017),
+            'database' => env('DB_TEST_DATABASE'),
+            'username' => env('DB_TEST_USERNAME'),
+            'password' => env('DB_TEST_PASSWORD'),
+            'options'  => [
+                'database' => 'admin' // sets the authentication database required by mongo 3
+            ]
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
