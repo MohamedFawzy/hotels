@@ -23,6 +23,15 @@ Hotels CRUD service api .
 
 - Open docker container for php-fpm with the following command `docker exec -it docker_microservice_hotels_fpm_1 /bin/bash`
 - Install composer packages `composer install`
+- copy `source/.env.example` to `.env.` change to the following
+  
+  ``DB_CONNECTION=mongodb
+    DB_HOST=mongodb
+    DB_PORT=27017
+    DB_DATABASE=hotels
+    DB_USERNAME=
+    DB_PASSWORD=
+    ``
 
 
 
