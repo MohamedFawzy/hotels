@@ -11,15 +11,11 @@ before_install:
 
 # Commands to be run before your environment runs.
 before_script:
-  - php artisan key:generate
   - cp .env.travis source/.env
   - cd source
   - composer self-update
   - composer install
-
-# commands to be run after environment runs
-after_script:
-  - vendor/bin/test-reporter
+  - php artisan key:generate
 
 
 # Commands you want to run that will verify your build.
