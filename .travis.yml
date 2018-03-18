@@ -5,6 +5,9 @@ language: php
 php:
   - 7.1
 
+services:
+  - mongodb
+
 # Commands to be run before your environment runs.
 before_script:
   - cd source
