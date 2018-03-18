@@ -5,12 +5,11 @@ language: php
 php:
   - 7.1
 
-services:
-  - mongodb
+before_install:
+  - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 # Commands to be run before your environment runs.
 before_script:
-  - ./mongo-php-driver-installer.sh
   - cd source
   - composer self-update
   - composer install
