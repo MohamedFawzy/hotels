@@ -1,0 +1,70 @@
+version: '2'
+services:
+    ##
+    # Autodiscovery : Consul
+    ##
+    autodiscovery:
+        build: ./autodiscovery/
+        mem_limit: 128m
+        expose:
+            - 53
+            - 8300
+            - 8301
+            - 8302
+            - 8400
+            - 8500
+        ports:
+            - 8500:8500
+        dns:
+            - 127.0.0.1
+
+    ##
+    # Battle Microservice
+    ##
+    microservice_hotels_fpm:
+        build: ./microservices/hotels/php-fpm/
+        volumes_from:
+            - source_base
+        links:
+            - autodiscovery
+            - mongodb
+        expose:
+            - 9000
+        environment:
+            - BACKEND=microservice-hotels-nginx
+            - CONSUL=autodiscovery
+
+    microservice_hotels_nginx:
+        build: ./microservices/hotels/nginx/
+        volumes_from:
+            - source_base
+        links:
+            - autodiscovery
+            - mongodb
+        environment:
+            - BACKEND=microservice-hotels-fpm
+            - CONSUL=autodiscovery
+        ports:
+            - 8081:80
+            - 9091:9090
+
+    mongodb:
+        image: mongo:latest
+        container_name: "mongodb"
+        environment:
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
+        volumes:
+          - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+    ##
+    # Source containers
+    ##
+    source_base:
+        image: nginx:stable
+        volumes:
+            - ../source:/var/www/html
+        command: "true"
