@@ -25,13 +25,19 @@ Hotels CRUD service api .
 - Install composer packages `composer install`
 - copy `source/.env.example` to `.env.` change to the following
   
-  ``DB_CONNECTION=mongodb
+  ```
+  DB_CONNECTION=mongodb
+  
     DB_HOST=mongodb
+    
     DB_PORT=27017
+    
     DB_DATABASE=hotels
+    
     DB_USERNAME=
+    
     DB_PASSWORD=
-    ``
+    ```
 
 
 
