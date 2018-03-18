@@ -3,7 +3,9 @@ Hotels service
 
 # Description :
 Hotels CRUD service api . 
-
+- Consul used to register services such as php-fpm , nginx
+- Link each service to service registry .
+- Monitory health check and reload service if it's down .
 
 # Perquisite
 - Docker installed on your machine .
@@ -13,8 +15,10 @@ Hotels CRUD service api .
 - `git clone https://github.com/MohamedFawzy/hotels.git`
 - `cd docker`
 - `docker-compose up`
-- you should see the following image
+- You should see the following image
 ![alt text](https://raw.githubusercontent.com/MohamedFawzy/hotels/master/images/consul.png)
+- Open your browser at `http://localhost:8500` you should see registered services up and running .
+![alt text](https://raw.githubusercontent.com/MohamedFawzy/hotels/master/images/consul-interface.png)
 
 
 
