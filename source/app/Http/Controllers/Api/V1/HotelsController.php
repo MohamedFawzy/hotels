@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +16,10 @@ class HotelsController extends Controller
     public function index()
     {
         //
+        $result = Hotel::all();
+        return $result;
+        dd($result);
+        return $result;
     }
 
     /**
