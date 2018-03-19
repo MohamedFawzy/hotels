@@ -1,6 +1,8 @@
 # Hotels
+- Hotels service
+
 [![Build Status](https://travis-ci.org/MohamedFawzy/hotels.svg?branch=master)](https://travis-ci.org/MohamedFawzy/hotels)
-Hotels service
+
 
 # Description :
 Hotels CRUD service api . 
