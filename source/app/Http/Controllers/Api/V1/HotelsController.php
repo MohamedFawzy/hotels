@@ -16,10 +16,6 @@ class HotelsController extends Controller
     public function index()
     {
         //
-        $result = Hotel::all();
-        return $result;
-        dd($result);
-        return $result;
     }
 
     /**
