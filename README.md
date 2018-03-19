@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/MohamedFawzy/hotels.svg?branch=master)](https://travis-ci.org/MohamedFawzy/hotels)
 
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/9eb1f9c146b11e2fec8c/maintainability)](https://codeclimate.com/github/MohamedFawzy/hotels/maintainability)
 # Description :
 Hotels CRUD service api . 
 - Consul used to register services such as php-fpm , nginx
