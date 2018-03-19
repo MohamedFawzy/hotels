@@ -18,8 +18,16 @@ before_script:
   - php artisan key:generate
 
 
+addons:
+  code_climate:
+    repo_token:
+      secure: "PkqQTnMvxenEdWuB2FFnyJ26AkS9fJJj7dzKVzwNyB4rOA8Ez1ibPlg3ckYDC1mvZxIHW4YEOZH7c8/JsQEoWRmFbiwVsqv5YFDbAlc4d9VRiSQcYarIYotbmXDydzAB3PDJWR8OiWfzlrwjymWKUW5JOqa6pd+nZhaH0R0jXfRExXQ0tdnyvcLoZMIyNmTkNZwOO5kEqxs38jezuLL3jNTQK5TzvFzERJv9uxwZdsGxJa02v+9O7Nux57g+YsEvtULxr/n3yiNUs9Rscpm8moZzaK/qcMe+WKhAD4SAO2N/hVO4oyjpmEczvUxBH4PpG9Km4ADfnS5TP0grT5qXBVSWbAMA61aQEGdCN2vDqGHo0t6PUHvopgKdhoOsEWKfPwXRmFu3/7GLqgikDXB8ix0RD3MVdiNvatiF0QshWs97LwU7XnjXNPeq3whXpCMbkDoIhkpihx8bNiwE/E9nmONYBKy4UsG7BvZFlkiLCj6bWZlZbcqYm3dQbO+T2GqWtQAcjK48C22W3A/2Yr4fDfX7zuDyo8T21dPrJAC5NbLqJ8jzd0o2tHtjt/kcocqAgjADTgd9gy1kzlFNZZbNeKP788roMKslF5imb8wD8Vj4/BTMWfZSMiCXCzmGivHdTXKtdnLgBnayZc2tN1dx/Yg36uUkPRj25IHsev504u0="
+
 # Commands you want to run that will verify your build.
 script: ./vendor/bin/phpunit  tests/
+
+after_script:
+  - vendor/bin/test-reporter
 
 # allow_failures: Allow this build to fail under the specified environments.
 # fast_finish: If your build fails do not continue trying to build, just stop.
