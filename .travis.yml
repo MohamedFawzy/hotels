@@ -9,8 +9,15 @@ before_install:
   - pecl install mongodb
   - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
+# start mongodb as service
+services:
+  - mongodb
+
+
 # Commands to be run before your environment runs.
 before_script:
+  - sleep 15
+  - mongo hotels_testing --eval 'db.createUser({user:"hotels_user",pwd:"hotels_password",roles:["readWrite"]});'
   - cp .env.travis source/.env
   - cd source
   - composer self-update
