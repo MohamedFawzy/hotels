@@ -9,7 +9,7 @@ class HotelsControllerTest extends TestCase
 
     public function testIndexHttpStatusCode()
     {
-        factory(App\Hotel::class, 100)->create();
+        //factory(App\Hotel::class, 100)->create();
 
         $request = $this->call('GET', self::ROUTE);
         $statusCode = $request->getStatusCode();
