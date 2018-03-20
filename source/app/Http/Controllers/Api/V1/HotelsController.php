@@ -16,6 +16,14 @@ class HotelsController extends Controller
     public function index()
     {
         //
+        $model = Hotel::SearchSortPaginationCriteria();
+        $columns = Hotel::$columns;
+
+        return response()
+            ->json([
+                'model' => $model,
+                'columns' => $columns
+            ]);
     }
 
     /**

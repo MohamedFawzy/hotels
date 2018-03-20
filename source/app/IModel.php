@@ -3,6 +3,7 @@
 namespace App;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use MongoDB\Collection;
 
 interface IModel
@@ -14,6 +15,6 @@ interface IModel
      * @param $query
      * @return Collection
      */
-    public function SearchSortPaginationCriteria($query): Collection;
+    public function scopeSearchSortPaginationCriteria($query);
 
 }
