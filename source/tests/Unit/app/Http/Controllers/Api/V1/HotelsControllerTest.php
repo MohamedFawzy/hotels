@@ -1,5 +1,6 @@
 <?php
 use Tests\TestCase;
+use Faker\Generator as Faker;
 
 class HotelsControllerTest extends TestCase
 {
@@ -9,7 +10,22 @@ class HotelsControllerTest extends TestCase
 
     public function __construct()
     {
-        factory(App\Hotel::class, 100)->create();
+        for($i=0; $i<100; $i++){
+            $faker = new Faker();
+            $hotel = new \App\Hotel();
+
+            $hotel->name = $faker->name;
+            $hotel->price = $faker->price;
+            $hotel->city = $faker->city;
+            $hotel->availability = [
+              [
+                  'from' => $faker->date('d-m-Y'),
+                  'to'   => $faker->date('d-m-Y')
+              ]
+            ];
+
+            $hotel->save();
+        }
     }
 
     public function testIndexHttpStatusCode()
