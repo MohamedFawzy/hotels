@@ -9,6 +9,8 @@ class HotelsControllerTest extends TestCase
 
     public function testIndexHttpStatusCode()
     {
+        factory(App\Hotel::class, 100)->create();
+
         $this->assertEquals(5,5);
     }
 }
