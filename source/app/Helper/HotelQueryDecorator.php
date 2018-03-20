@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Helper;
-use Illuminate\Database\Eloquent\Builder;
+use App\Factory\RequestFactory;
 use Validator;
 /**
  * Using design pattern decorator you can get object from models as response and decorate response
@@ -11,6 +11,16 @@ use Validator;
  */
 trait HotelQueryDecorator
 {
+
+    private $factory;
+
+    /**
+     * HotelQueryDecorator constructor.
+     */
+    public function __construct()
+    {
+        $this->factory = new RequestFactory();
+    }
 
     protected $operators = [
         'equal' => '=',
@@ -43,6 +53,7 @@ trait HotelQueryDecorator
             throw new \Illuminate\Validation\ValidationException($validation);
         }
 
+        $request->search_input = $this->factory->changeDataType($request);
         return $query
             ->orderBy($request->column, $request->direction)
             ->where(function($query) use ($request) {
@@ -56,11 +67,10 @@ trait HotelQueryDecorator
                         if($request->search_column=='id' && $request->search_input != null){
                             $request->search_column = '_id';
                         }
-
-                        // @TODO add factory pattern for get data type for request search input and value object for entity hotel
-                        if($request->search_column=='price'){
-                            $request->search_input = (float) $request->search_input;
-                        }
+//                        // @TODO add factory pattern for get data type for request search input and value object for entity hotel
+//                        if($request->search_column=='price'){
+//                            $request->search_input = (float) $request->search_input;
+//                        }
                         $query->where($request->search_column, $this->operators[$request->search_operator], $request->search_input);
                     }
                 }
