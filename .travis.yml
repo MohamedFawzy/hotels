@@ -16,8 +16,6 @@ services:
 
 # Commands to be run before your environment runs.
 before_script:
-  - sleep 15
-  - mongo hotels_testing --eval 'db.createUser({user:"hotels_user",pwd:"hotels_password",roles:["readWrite"]});'
   - cp .env.travis source/.env
   - cd source
   - composer self-update
