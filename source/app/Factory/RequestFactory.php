@@ -15,13 +15,20 @@ class RequestFactory
 
     public function  changeDataType(Request $request)
     {
-        $search_input=null;
+        $search_input=$request->search_input;
         $hotel = new Hotel();
         switch ($request->search_column){
             case 'price':
-                $search_input = (float) $request->search_input;
-                $hotel->setPrice($search_input);
-                $search_input = $hotel->getPrice();
+                if($request->search_operator=='in'){
+                    $request->search_input = explode(',',$request->search_input) ;
+                    foreach($request->search_input as $value){
+                        $search_input[] = (float) $value;
+                    }
+                }else{
+                    $search_input = (float) $request->search_input;
+                    $hotel->setPrice($search_input);
+                    $search_input = $hotel->getPrice();
+                }
                 break;
         }
 

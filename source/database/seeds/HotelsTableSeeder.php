@@ -28,12 +28,13 @@ class HotelsTableSeeder extends Seeder
             $hotel->city = $faker->city;
             $hotel->availability = [
                 [
-                    'from' => $faker->date('d-m-Y'),
-                    'to'   => $faker->date('d-m-Y')
+                    'from' => date('d-m-Y',$faker->dateTimeBetween('now', strtotime('+2 week'))->getTimestamp()),
+                    'to'   => date('d-m-Y',$faker->dateTimeBetween('+3 week', strtotime('+2 month'))->getTimestamp())
                 ],
                 [
-                    'from' => $faker->date('d-m-Y'),
-                    'to'   => $faker->date('d-m-Y')
+
+                    'from' => date('d-m-Y', $faker->dateTimeBetween('now', strtotime('+2 week'))->getTimestamp()),
+                    'to'   => date('d-m-Y', $faker->dateTimeBetween('+3 week', strtotime('+2 month'))->getTimestamp())
                 ]
             ];
             $result = $hotel->save();

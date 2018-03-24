@@ -14,6 +14,8 @@ trait HotelQueryDecorator
 
     private $factory;
 
+    private $request;
+
     /**
      * HotelQueryDecorator constructor.
      */
@@ -59,7 +61,18 @@ trait HotelQueryDecorator
             ->where(function($query) use ($request) {
                 if($request->has('search_input')) {
                     if($request->search_operator == 'in') {
-                        $query->whereIn($request->search_column, explode(',', $request->search_input));
+                        if($request->search_column=='price'){
+                            $query->whereBetween($request->search_column, $request->search_input);
+                        }else if ($request->search_column=='availability'){
+                            $request->search_input = explode(',', $request->search_input);
+                            $this->request = $request;
+                            $query->whereBetween("availability.from", $this->request->search_input)->where(function ($query){
+                                $query->whereBetween("availability.to", $this->request->search_input);
+                            });
+                        }else{
+                            $query->whereIn($request->search_column, explode(',', $request->search_input));
+                        }
+
                     } else if($request->search_operator == 'like') {
                         $query->where($request->search_column, 'LIKE', '%'.$request->search_input.'%');
                     }
@@ -67,10 +80,6 @@ trait HotelQueryDecorator
                         if($request->search_column=='id' && $request->search_input != null){
                             $request->search_column = '_id';
                         }
-//                        // @TODO add factory pattern for get data type for request search input and value object for entity hotel
-//                        if($request->search_column=='price'){
-//                            $request->search_input = (float) $request->search_input;
-//                        }
                         $query->where($request->search_column, $this->operators[$request->search_operator], $request->search_input);
                     }
                 }
