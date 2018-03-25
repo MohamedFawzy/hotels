@@ -31,7 +31,9 @@ class Hotels implements IService
      */
     public function findAll(): array
     {
-        return $this->repository->findAll();
+        $result =  $this->repository->findAll();
+        $result['model'] = \App\Transformers\Hotels::transform($result['model']);
+        return $result;
     }
 
 

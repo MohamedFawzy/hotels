@@ -26,9 +26,13 @@ class HotelsTableSeeder extends Seeder
             $hotel->name = $faker->name;
             $hotel->price =$faker->randomFloat(2,50,200);
             $hotel->city = $faker->city;
+
             $from  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('now', strtotime('+2 week'))->getTimestamp())));
             $to  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('+3 week', strtotime('+2 month'))->getTimestamp())));
 
+
+            $from2  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('+1 week', strtotime('+3 week'))->getTimestamp())));
+            $to2  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('+4 week', strtotime('+2 month'))->getTimestamp())));
 
             $hotel->availability = [
                 [
@@ -37,8 +41,8 @@ class HotelsTableSeeder extends Seeder
                 ],
                 [
 
-                    'from' => $from,
-                    'to'   => $to
+                    'from' => $from2,
+                    'to'   => $to2
                 ]
             ];
             $result = $hotel->save();
