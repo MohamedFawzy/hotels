@@ -23,7 +23,7 @@ class Hotels
                 'name' => $row->name,
                 'price' => $row->price,
                 'city' => $row->city,
-                'availability' => $availability,
+            //    'availability' => $availability,
             ];
             unset($availability);
         }

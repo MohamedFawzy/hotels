@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('hotels', 'HotelsController@index')->name('hotels.index');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
