@@ -64,7 +64,9 @@ trait HotelQueryDecorator
                         if($request->search_column=='price'){
                             $query->whereBetween($request->search_column, $request->search_input);
                         }else if ($request->search_column=='availability'){
-                            $request->search_input = explode(',', $request->search_input);
+                            if(!is_array($request->search_input)){
+                                $request->search_input = explode(',', $request->search_input);
+                            }
                             $from = new \MongoDB\BSON\UTCDateTime(new \DateTime($request->search_input[0]));
                             $to = new \MongoDB\BSON\UTCDateTime(new \DateTime($request->search_input[1]));
                             $query->where('availability', 'elemMatch', array('from' => array('$gte'=>$from), 'to' => array('$lte'=>$to)));

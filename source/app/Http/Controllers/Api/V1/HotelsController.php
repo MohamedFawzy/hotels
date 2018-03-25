@@ -31,13 +31,17 @@ class HotelsController extends Controller
         }catch (ValidationException $e){
             return response()->json(['status'=>'false', 'message'=> $e->getMessage()], 422);
         }catch (\Exception $e){
-            dd($e->getMessage());
             return response()->json(['status'=>'false', 'message' => 'Exception happens due execute your query'], 500);
         }
-
-        //$model = Hotel::SearchSortPaginationCriteria();
-        //$columns = Hotel::$columns;
-
+//
+//        $model = Hotel::SearchSortPaginationCriteria();
+//        $columns = Hotel::$columns;
+//
+//        return response()
+//                ->json([
+//                   'model' => $model,
+//                   'columns' => $columns
+//                ]);
         return response()
             ->json([
                 'model' => $result['model'],

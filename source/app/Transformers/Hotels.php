@@ -8,7 +8,6 @@ class Hotels
 
     public static function transform($result)
     {
-        $response = [];
         $availability=[];
         foreach ($result as $index => $row){
             foreach($row->availability as $key => $value){
@@ -18,16 +17,9 @@ class Hotels
 
                 ];
             }
-            $response[] = [
-                'id' => $row->id,
-                'name' => $row->name,
-                'price' => $row->price,
-                'city' => $row->city,
-            //    'availability' => $availability,
-            ];
+            $result[$index]->availability = $availability;
             unset($availability);
         }
-
-        return $response;
+        return $result;
     }
 }
