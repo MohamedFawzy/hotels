@@ -67,7 +67,7 @@ trait HotelQueryDecorator
                             $request->search_input = explode(',', $request->search_input);
                             $from = new \MongoDB\BSON\UTCDateTime(new \DateTime($request->search_input[0]));
                             $to = new \MongoDB\BSON\UTCDateTime(new \DateTime($request->search_input[1]));
-                            $query->whereRaw(['availability.from' => array('$gte' => $from), 'availability.to' => array('$lte' => $to)]);
+                            $query->where('availability', 'elemMatch', array('from' => array('$gte'=>$from), 'to' => array('$lte'=>$to)));
                         }else{
                             $query->whereIn($request->search_column, explode(',', $request->search_input));
                         }
