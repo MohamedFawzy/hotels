@@ -3,11 +3,21 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Hotel;
+use App\Services\Hotels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Validation\ValidationException;
 class HotelsController extends Controller
 {
+
+    private $service;
+
+    public function __construct(Hotels $hotels)
+    {
+        $this->service = $hotels;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,13 +26,22 @@ class HotelsController extends Controller
     public function index()
     {
         //
-        $model = Hotel::SearchSortPaginationCriteria();
-        $columns = Hotel::$columns;
+        try{
+            $result = $this->service->findAll();
+        }catch (ValidationException $e){
+            return response()->json(['status'=>'false', 'message'=> $e->getMessage()], 422);
+        }catch (\Exception $e){
+            dd($e->getMessage());
+            return response()->json(['status'=>'false', 'message' => 'Exception happens due execute your query'], 500);
+        }
+
+        //$model = Hotel::SearchSortPaginationCriteria();
+        //$columns = Hotel::$columns;
 
         return response()
             ->json([
-                'model' => $model,
-                'columns' => $columns
+                'model' => $result['model'],
+                'columns' => $result['columns']
             ]);
     }
 
