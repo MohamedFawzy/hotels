@@ -50643,6 +50643,40 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 form-group" }, [
+                _c("label", { staticClass: "control-label" }, [
+                  _vm._v("Hotel availability to")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hotel.availability.to,
+                      expression: "hotel.availability.to"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "datetime-local" },
+                  domProps: { value: _vm.hotel.availability.to },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.hotel.availability,
+                        "to",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
             _vm._m(0)
           ]
         )
@@ -50723,6 +50757,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50731,10 +50771,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 price: '',
                 city: '',
-                availability: {
+                availability: [{
                     'from': '',
                     'to': ''
-                }
+                }]
             }
         };
     },

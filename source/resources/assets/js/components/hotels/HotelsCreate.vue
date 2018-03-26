@@ -35,6 +35,12 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
+                            <label class="control-label">Hotel availability to</label>
+                            <input type="datetime-local" v-model="hotel.availability.to" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 form-group">
                             <button class="btn btn-success">Create</button>
                         </div>
                     </div>
@@ -52,10 +58,10 @@
                     name: '',
                     price: '',
                     city: '',
-                    availability: {
+                    availability: [{
                         'from' : '',
                         'to'   : '',
-                    },
+                    }] ,
                 }
             }
         },

@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 use App\Hotel;
+use App\ValueObject\Entity;
 use Illuminate\Http\Request;
 use Jenssegers\Mongodb\Eloquent\Builder;
-
 /**
  * Class Hotels
  * @package App\Repository
@@ -12,6 +12,10 @@ use Jenssegers\Mongodb\Eloquent\Builder;
 class Hotels implements IRepository
 {
 
+    /**
+     * find all elements in page with default 15 record by per
+     * @return array
+     */
     public function findAll(): array
     {
 
@@ -19,6 +23,30 @@ class Hotels implements IRepository
         $columns = Hotel::$columns;
         $result = ['model'=>$model, 'columns' => $columns];
 
+        return $result;
+    }
+
+    /**
+     * Save new record to database
+     * @param \App\ValueObject\Hotel $entity
+     * @return bool
+     * @throws \ErrorException
+     */
+    public function store(Entity $entity): bool
+    {
+        $hotel = new Hotel();
+        $hotel->name = $entity->getName();
+        $hotel->price = $entity->getPrice();
+        $hotel->city = $entity->getCity();
+        $result = [
+          'from' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[0]->getFrom())),
+          'to' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[0]->getTo())),
+        ];
+        $hotel->availability = $result;
+        $result = $hotel->save();
+        if(!$result){
+            throw new \ErrorException("cannot create new entity");
+        }
         return $result;
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Hotel;
+use App\Http\Requests\StoreHotelPost;
 use App\Services\Hotels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,6 @@ class HotelsController extends Controller
         }catch (ValidationException $e){
             return response()->json(['status'=>'false', 'message'=> $e->getMessage()], 422);
         }catch (\Exception $e){
-            dd($e->getMessage());
             return response()->json(['status'=>'false', 'message' => 'Exception happens due execute your query'], 500);
         }
         return response()
@@ -57,9 +57,22 @@ class HotelsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHotelPost $request)
     {
-        //
+        try{
+
+            $name = $request->input('name');
+            $city = $request->input('city');
+            $price = $request->input('price');
+            $availability = $request->input('availability');
+            // hydrate request
+            $this->service->store($name, $city, $price, $availability);
+        }catch (\ErrorException $e){
+            return response()->json([], 503);
+        }
+        return response()
+            ->json([
+            ], 201);
     }
 
     /**

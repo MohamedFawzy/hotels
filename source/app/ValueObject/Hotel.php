@@ -6,7 +6,7 @@ namespace App\ValueObject;
  * @package App\ValueObject
  */
 
-class Hotel
+class Hotel extends Entity
 {
 
     /**

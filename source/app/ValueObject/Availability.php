@@ -6,7 +6,7 @@ namespace App\ValueObject;
  * @package App\ValueObject
  */
 
-class Availability
+class Availability extends Entity
 {
     /**
      * @var string
