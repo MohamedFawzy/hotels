@@ -49976,7 +49976,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -50411,11 +50410,12 @@ if (false) {
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(41)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50433,6 +50433,22 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources/assets/js/components/hotels/HotelsCreate.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5f05b344", Component.options)
+  } else {
+    hotAPI.reload("data-v-5f05b344", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
 module.exports = Component.exports
 
@@ -50466,6 +50482,276 @@ Component.options.__file = "resources/assets/js/components/hotels/HotelsEdit.vue
 
 module.exports = Component.exports
 
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "btn btn-default", attrs: { to: "/" } },
+          [_vm._v("Back")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", { staticClass: "panel-heading" }, [_vm._v("Create new hotel")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                _vm.saveForm()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 form-group" }, [
+                _c("label", { staticClass: "control-label" }, [
+                  _vm._v("hotel name")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hotel.name,
+                      expression: "hotel.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.hotel.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.hotel, "name", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 form-group" }, [
+                _c("label", { staticClass: "control-label" }, [
+                  _vm._v("Hotel price")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hotel.price,
+                      expression: "hotel.price"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.hotel.price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.hotel, "price", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 form-group" }, [
+                _c("label", { staticClass: "control-label" }, [
+                  _vm._v("Hotel city")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hotel.city,
+                      expression: "hotel.city"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.hotel.city },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.hotel, "city", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 form-group" }, [
+                _c("label", { staticClass: "control-label" }, [
+                  _vm._v("Hotel availability from")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hotel.availability.from,
+                      expression: "hotel.availability.from"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "datetime-local" },
+                  domProps: { value: _vm.hotel.availability.from },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.hotel.availability,
+                        "from",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12 form-group" }, [
+        _c("button", { staticClass: "btn btn-success" }, [_vm._v("Create")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5f05b344", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            hotel: {
+                name: '',
+                price: '',
+                city: '',
+                availability: {
+                    'from': '',
+                    'to': ''
+                }
+            }
+        };
+    },
+    methods: {
+        saveForm: function saveForm() {
+            event.preventDefault();
+            var app = this;
+            var newHotel = app.hotel;
+            axios.post('/api/v1/hotels', newHotel).then(function (resp) {
+                app.$router.push({ path: '/' });
+            }).catch(function (resp) {
+                console.log(resp);
+                alert("Could not create your hotel");
+            });
+        }
+    }
+});
 
 /***/ })
 /******/ ]);
