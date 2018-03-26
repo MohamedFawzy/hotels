@@ -8,6 +8,9 @@ use App\Services\Hotels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
+/**
+ * @author Mohamed fawzy
+ */
 class HotelsController extends Controller
 {
 
@@ -68,7 +71,6 @@ class HotelsController extends Controller
             // hydrate request
             $this->service->store($name, $city, $price, $availability);
         }catch (\ErrorException $e){
-            dd($e->getMessage());
             return response()->json([], 503);
         }
         return response()
@@ -119,5 +121,17 @@ class HotelsController extends Controller
     public function destroy($id)
     {
         //
+        try{
+            $this->service->delete($id);
+        }catch (\Exception $e){
+            return response()
+                ->json([
+                ], 503);
+        }
+
+
+        return response()
+            ->json([
+            ], 201);
     }
 }

@@ -45,9 +45,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="row in model.data">
+                <tr v-for="row, index in model.data">
                     <td v-for="(value, key) in row">{{value}}</td>
-                    <td>test</td>
+                    <router-link :to="{name: 'editHotel', params: {id: row._id}}" class="btn btn-xs btn-default">Edit</router-link>
+                    <a href="#"
+                       class="btn btn-xs btn-danger"
+                       v-on:click="deleteEntry(row._id, index)">
+                        Delete
+                    </a>
                 </tr>
                 </tbody>
             </table>
@@ -110,6 +115,19 @@
             this.fetchIndexData()
         },
         methods: {
+            deleteEntry(id, index) {
+                if (confirm("Do you really want to delete it?")) {
+                    var app = this;
+                    axios.delete('/api/v1/hotels/' + id)
+                        .then(function (resp) {
+                            app.row.splice(index, 1);
+                        })
+                        .catch(function (resp) {
+                            alert("Could not delete company");
+                        });
+                }
+            },
+
             next() {
                 if(this.model.next_page_url) {
                     this.query.page++

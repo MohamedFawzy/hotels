@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+use App\Hotel;
 use App\Repository\Hotels as HotelsRepository;
 
 /**
@@ -43,6 +44,15 @@ class Hotels implements IService
         $data = ['name'=>$name, 'city'=>$city, 'price'=>$price, 'availability'=>$availability];
         $hotelsObject = \App\Hydrator\Hotel::hydrate($data);
         return $this->repository->store($hotelsObject);
+    }
+
+    /**
+     * @param string $id
+     * @return int
+     */
+    public function delete(string $id)
+    {
+        return Hotel::destroy($id);
     }
 
 

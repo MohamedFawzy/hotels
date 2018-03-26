@@ -49976,6 +49976,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -50013,6 +50018,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        deleteEntry: function deleteEntry(id, index) {
+            if (confirm("Do you really want to delete it?")) {
+                var app = this;
+                __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/v1/hotels/' + id).then(function (resp) {
+                    app.row.splice(index, 1);
+                }).catch(function (resp) {
+                    alert("Could not delete company");
+                });
+            }
+        },
         next: function next() {
             if (this.model.next_page_url) {
                 this.query.page++;
@@ -50249,7 +50264,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.model.data, function(row) {
+          _vm._l(_vm.model.data, function(row, index) {
             return _c(
               "tr",
               [
@@ -50257,7 +50272,30 @@ var render = function() {
                   return _c("td", [_vm._v(_vm._s(value))])
                 }),
                 _vm._v(" "),
-                _c("td", [_vm._v("test")])
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-xs btn-default",
+                    attrs: {
+                      to: { name: "editHotel", params: { id: row._id } }
+                    }
+                  },
+                  [_vm._v("Edit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-xs btn-danger",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.deleteEntry(row._id, index)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Delete\n                ")]
+                )
               ],
               2
             )
