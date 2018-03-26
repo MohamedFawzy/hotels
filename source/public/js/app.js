@@ -50022,7 +50022,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (confirm("Do you really want to delete it?")) {
                 var app = this;
                 __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/v1/hotels/' + id).then(function (resp) {
-                    app.row.splice(index, 1);
+                    app.model.data.splice(index, 1);
                 }).catch(function (resp) {
                     alert("Could not delete company");
                 });

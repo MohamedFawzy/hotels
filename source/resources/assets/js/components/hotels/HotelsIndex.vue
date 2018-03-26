@@ -120,7 +120,7 @@
                     var app = this;
                     axios.delete('/api/v1/hotels/' + id)
                         .then(function (resp) {
-                            app.row.splice(index, 1);
+                            app.model.data.splice(index, 1);
                         })
                         .catch(function (resp) {
                             alert("Could not delete company");
