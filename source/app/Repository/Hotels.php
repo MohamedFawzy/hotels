@@ -38,10 +38,13 @@ class Hotels implements IRepository
         $hotel->name = $entity->getName();
         $hotel->price = $entity->getPrice();
         $hotel->city = $entity->getCity();
-        $result = [
-          'from' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[0]->getFrom())),
-          'to' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[0]->getTo())),
-        ];
+        $result=[];
+        for($i=0; $i< count($entity->getAvailability()); $i++){
+            $result[$i] = [
+                'from' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[$i]['from'])),
+                'to' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[$i]['to'])),
+            ];
+        }
         $hotel->availability = $result;
         $result = $hotel->save();
         if(!$result){

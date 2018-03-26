@@ -14,13 +14,12 @@ class Hotel
         $entity->setPrice((float) $request['price']);
         $entity->setCity($request['city']);
         $result =[];
-        if($request['availability'] != null){
-            $availability = new Availability();
-            $result[]= [
-                $availability->setFrom($request['availability']['from']),
-                $availability->setTo($request['availability']['to']),
-            ];
-
+        $availability = new Availability();
+        for($i=0; $i<count($request['availability']); $i++){
+            $result[$i] = [
+                       'from'=> $request['availability'][$i]["from"],
+                        'to'=>  $request['availability'][$i]["to"],
+                ];
         }
         $entity->setAvailability($result);
         return $entity;

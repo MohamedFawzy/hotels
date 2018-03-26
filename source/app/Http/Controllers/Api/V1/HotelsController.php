@@ -68,6 +68,7 @@ class HotelsController extends Controller
             // hydrate request
             $this->service->store($name, $city, $price, $availability);
         }catch (\ErrorException $e){
+            dd($e->getMessage());
             return response()->json([], 503);
         }
         return response()

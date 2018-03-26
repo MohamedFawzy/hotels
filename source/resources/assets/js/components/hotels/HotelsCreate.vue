@@ -30,13 +30,13 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Hotel availability from</label>
-                            <input type="datetime-local" v-model="hotel.availability.from" class="form-control">
+                            <input type="datetime-local" v-model="hotel.availability[0].from" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Hotel availability to</label>
-                            <input type="datetime-local" v-model="hotel.availability.to" class="form-control">
+                            <input type="datetime-local" v-model="hotel.availability[0].to" class="form-control">
                         </div>
                     </div>
                     <div class="row">
