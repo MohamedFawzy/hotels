@@ -1,5 +1,9 @@
 <template>
     <div class="dv">
+
+        <div class="form-group">
+            <router-link :to="{name: 'createHotel'}" class="btn btn-success">Create new hotel</router-link>
+        </div>
         <div class="dv-header">
             <div class="dv-header-title">
                 Hotels Index

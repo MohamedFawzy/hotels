@@ -49973,6 +49973,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -50058,6 +50062,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dv" }, [
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-success",
+            attrs: { to: { name: "createHotel" } }
+          },
+          [_vm._v("Create new hotel")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "dv-header" }, [
       _c("div", { staticClass: "dv-header-title" }, [
         _vm._v("\n            Hotels Index\n        ")

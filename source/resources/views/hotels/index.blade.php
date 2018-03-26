@@ -3,6 +3,8 @@
 <head>
     <title>Application</title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 <div class="container">
