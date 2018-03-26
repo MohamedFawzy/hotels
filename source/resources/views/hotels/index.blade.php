@@ -1,19 +1,16 @@
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Hotels</div>
-
-                    <div class="panel-body table-responsive">
-
-                        <router-view name="hotelsIndex"></router-view>
-                        <router-view></router-view>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application</title>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
+</head>
+<body>
+<div class="container">
+    <div id="app">
+        <router-view name="hotelsIndex"></router-view>
+        <router-view></router-view>
     </div>
-@endsection
+</div>
+</body>
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+</html>

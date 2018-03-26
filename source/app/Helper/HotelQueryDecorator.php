@@ -2,7 +2,10 @@
 
 namespace App\Helper;
 use App\Factory\RequestFactory;
+use App\Repository\Hotels;
+use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Validation\ValidationException;
 /**
  * Using design pattern decorator you can get object from models as response and decorate response
  * for pagination , sorting , search
@@ -21,7 +24,7 @@ trait HotelQueryDecorator
      */
     public function __construct()
     {
-        $this->factory = new RequestFactory();
+        $this->factory = new RequestFactory(new Hotels());
     }
 
     protected $operators = [
@@ -36,7 +39,11 @@ trait HotelQueryDecorator
     ];
 
 
-    public function scopeSearchSortPaginationCriteria($query)
+    /**
+     * @return Request
+     * @throws ValidationException
+     */
+    private function validateRequest(): Request
     {
         $request = app()->make('request');
         $validation = Validator::make($request->only([
@@ -52,38 +59,22 @@ trait HotelQueryDecorator
         ]);
 
         if($validation->fails()) {
-            throw new \Illuminate\Validation\ValidationException($validation);
+            throw new ValidationException($validation);
         }
 
-        $request->search_input = $this->factory->changeDataType($request);
+
+        return $request;
+    }
+
+    public function scopeSearchSortPaginationCriteria($query)
+    {
+
+
+        $request = $this->validateRequest();
         return $query
             ->orderBy($request->column, $request->direction)
             ->where(function($query) use ($request) {
-                if($request->has('search_input')) {
-                    if($request->search_operator == 'in') {
-                        if($request->search_column=='price'){
-                            $query->whereBetween($request->search_column, $request->search_input);
-                        }else if ($request->search_column=='availability'){
-                            if(!is_array($request->search_input)){
-                                $request->search_input = explode(',', $request->search_input);
-                            }
-                            $from = new \MongoDB\BSON\UTCDateTime(new \DateTime($request->search_input[0]));
-                            $to = new \MongoDB\BSON\UTCDateTime(new \DateTime($request->search_input[1]));
-                            $query->where('availability', 'elemMatch', array('from' => array('$gte'=>$from), 'to' => array('$lte'=>$to)));
-                        }else{
-                            $query->whereIn($request->search_column, explode(',', $request->search_input));
-                        }
-
-                    } else if($request->search_operator == 'like') {
-                        $query->where($request->search_column, 'LIKE', '%'.$request->search_input.'%');
-                    }
-                    else {
-                        if($request->search_column=='id' && $request->search_input != null){
-                            $request->search_column = '_id';
-                        }
-                        $query->where($request->search_column, $this->operators[$request->search_operator], $request->search_input);
-                    }
-                }
+                $this->factory->executeQuery($request, $query);
             })
             ->paginate((int) $request->per_page);
 

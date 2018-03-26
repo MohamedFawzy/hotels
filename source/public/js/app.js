@@ -24842,6 +24842,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_hotels_HotelsIndex_vue__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_hotels_HotelsIndex_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_hotels_HotelsIndex_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_hotels_HotelsCreate_vue__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_hotels_HotelsCreate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_hotels_HotelsCreate_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_hotels_HotelsEdit_vue__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_hotels_HotelsEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_hotels_HotelsEdit_vue__);
 __webpack_require__(15);
 
 window.Vue = __webpack_require__(12);
@@ -24850,15 +24854,15 @@ window.Vue = __webpack_require__(12);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 
 
-//import HotelsCreate from './components/hotels/HotelsCreate.vue';
-//import HotelsEdit from './components/hotels/HotelsEdit.vue';
+
+
 
 var routes = [{
     path: '/',
     components: {
         hotelsIndex: __WEBPACK_IMPORTED_MODULE_1__components_hotels_HotelsIndex_vue___default.a
     }
-}];
+}, { path: '/admin/hotels/create', component: __WEBPACK_IMPORTED_MODULE_2__components_hotels_HotelsCreate_vue___default.a, name: 'createHotel' }, { path: '/admin/hotels/edit/:id', component: __WEBPACK_IMPORTED_MODULE_3__components_hotels_HotelsEdit_vue___default.a, name: 'editHotel' }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({ routes: routes });
 
@@ -49965,6 +49969,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -50189,29 +50197,34 @@ var render = function() {
         _c("thead", [
           _c(
             "tr",
-            _vm._l(_vm.columns, function(column) {
-              return _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.toggleOrder(column)
+            [
+              _vm._l(_vm.columns, function(column) {
+                return _c(
+                  "th",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.toggleOrder(column)
+                      }
                     }
-                  }
-                },
-                [
-                  _c("span", [_vm._v(_vm._s(column))]),
-                  _vm._v(" "),
-                  column === _vm.query.column
-                    ? _c("span", { staticClass: "dv-table-column" }, [
-                        _vm.query.direction === "desc"
-                          ? _c("span", [_vm._v("↓")])
-                          : _c("span", [_vm._v("↑")])
-                      ])
-                    : _vm._e()
-                ]
-              )
-            })
+                  },
+                  [
+                    _c("span", [_vm._v(_vm._s(column))]),
+                    _vm._v(" "),
+                    column === _vm.query.column
+                      ? _c("span", { staticClass: "dv-table-column" }, [
+                          _vm.query.direction === "desc"
+                            ? _c("span", [_vm._v("↓")])
+                            : _c("span", [_vm._v("↑")])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ],
+            2
           )
         ]),
         _vm._v(" "),
@@ -50220,9 +50233,14 @@ var render = function() {
           _vm._l(_vm.model.data, function(row) {
             return _c(
               "tr",
-              _vm._l(row, function(value, key) {
-                return _c("td", [_vm._v(_vm._s(value))])
-              })
+              [
+                _vm._l(row, function(value, key) {
+                  return _c("td", [_vm._v(_vm._s(value))])
+                }),
+                _vm._v(" "),
+                _c("td", [_vm._v("test")])
+              ],
+              2
             )
           })
         )
@@ -50342,7 +50360,14 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [_c("span", [_vm._v("Action")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -50357,6 +50382,70 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(41)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/hotels/HotelsCreate.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(41)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/hotels/HotelsEdit.vue"
+
+module.exports = Component.exports
+
 
 /***/ })
 /******/ ]);

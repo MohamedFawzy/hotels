@@ -32,15 +32,19 @@
                     <th v-for="column in columns" @click="toggleOrder(column)">
                         <span>{{column}}</span>
                         <span class="dv-table-column" v-if="column === query.column">
-                <span v-if="query.direction === 'desc'">&darr;</span>
-                <span v-else>&uarr;</span>
-              </span>
+                            <span v-if="query.direction === 'desc'">&darr;</span>
+                            <span v-else>&uarr;</span>
+                        </span>
+                    </th>
+                    <th>
+                        <span>Action</span>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="row in model.data">
                     <td v-for="(value, key) in row">{{value}}</td>
+                    <td>test</td>
                 </tr>
                 </tbody>
             </table>
