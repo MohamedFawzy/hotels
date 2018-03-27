@@ -25,7 +25,7 @@ class StoreHotelPost extends FormRequest
     {
         return [
             //
-            'name'  => 'required|alpha_dash|max:255',
+            'name'  => 'required|max:255',
             'price' => 'required|numeric|min:1|max:200',
             'city'  => 'required|alpha|min:3|max:255'
 

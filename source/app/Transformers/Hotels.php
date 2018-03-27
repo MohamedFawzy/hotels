@@ -22,4 +22,23 @@ class Hotels
         }
         return $result;
     }
+
+
+    /**
+     * @param $result
+     * @return mixed
+     */
+    public static function transformRow($result)
+    {
+        $availability=[];
+        foreach($result->availability as $index => $value){
+            //dd($value['from']->toDateTime()->format('d-m-Y'));
+            $availability[] = [
+              'from' => $value['from']->toDateTime()->format('d-m-Y'),
+              'to'   => $value['to']->toDateTime()->format('d-m-Y')
+            ];
+            $result->availability = $availability;
+        }
+        return $result;
+    }
 }

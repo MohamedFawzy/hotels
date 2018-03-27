@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Exceptions\EntityNotFound;
 use App\Hotel;
 use App\Http\Requests\StoreHotelPost;
 use App\Services\Hotels;
@@ -87,6 +88,15 @@ class HotelsController extends Controller
     public function show($id)
     {
         //
+        try{
+            $result = $this->service->find($id);
+        }catch (\Exception $e){
+            return response()->json(['error happens due execute your query'], 503);
+        }
+
+        return response()->json([
+           'data' => $result
+        ]);
     }
 
     /**
@@ -107,9 +117,24 @@ class HotelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreHotelPost $request, $id)
     {
-        //
+        try {
+
+            $name = $request->input('name');
+            $city = $request->input('city');
+            $price = $request->input('price');
+            $availability = $request->input('availability');
+            // hydrate request
+            $this->service->update($name, $city, $price, $availability, $id);
+        }catch (EntityNotFound $e){
+            return response()->json([], 404);
+        }catch (\ErrorException $e){
+            return response()->json([], 503);
+        }
+        return response()
+            ->json([
+            ], 201);
     }
 
     /**

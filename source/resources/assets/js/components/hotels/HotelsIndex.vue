@@ -123,7 +123,7 @@
                             app.model.data.splice(index, 1);
                         })
                         .catch(function (resp) {
-                            alert("Could not delete company");
+                            alert("Could not delete hotel");
                         });
                 }
             },

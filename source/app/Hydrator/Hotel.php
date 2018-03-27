@@ -14,7 +14,6 @@ class Hotel
         $entity->setPrice((float) $request['price']);
         $entity->setCity($request['city']);
         $result =[];
-        $availability = new Availability();
         for($i=0; $i<count($request['availability']); $i++){
             $result[$i] = [
                        'from'=> $request['availability'][$i]["from"],

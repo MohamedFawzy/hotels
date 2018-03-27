@@ -11,7 +11,7 @@
                 <form v-on:submit="saveForm()">
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">hotel name</label>
+                            <label class="control-label">Hotel name</label>
                             <input type="text" v-model="hotel.name" class="form-control">
                         </div>
                     </div>
