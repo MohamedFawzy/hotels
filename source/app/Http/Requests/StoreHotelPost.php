@@ -27,7 +27,7 @@ class StoreHotelPost extends FormRequest
             //
             'name'  => 'required|max:255',
             'price' => 'required|numeric|min:1|max:200',
-            'city'  => 'required|alpha|min:3|max:255'
+            'city'  => 'required|min:3|max:255'
 
         ];
     }

@@ -16,6 +16,13 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
+                            <label class="control-label">Hotel city</label>
+                            <input type="text" v-model="hotel.city" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 form-group">
                             <label class="control-label">Hotel price</label>
                             <input type="text" v-model="hotel.price" class="form-control">
                         </div>

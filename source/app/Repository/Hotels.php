@@ -54,6 +54,32 @@ class Hotels implements IRepository
     }
 
     /**
+     * @param Hotel $hotel
+     * @param Entity $entity
+     * @return array|bool
+     * @throws \ErrorException
+     */
+    public function update(Hotel $hotel, Entity $entity)
+    {
+        $hotel->name = $entity->getName();
+        $hotel->price = $entity->getPrice();
+        $hotel->city = $entity->getCity();
+        $result=[];
+        for($i=0; $i< count($entity->getAvailability()); $i++){
+            $result[$i] = [
+                'from' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[$i]['from'])),
+                'to' => new \MongoDB\BSON\UTCDateTime(new \DateTime($entity->getAvailability()[$i]['to'])),
+            ];
+        }
+        $hotel->availability = $result;
+        $result = $hotel->save();
+        if(!$result){
+            throw new \ErrorException("cannot create new entity");
+        }
+        return $result;
+    }
+
+    /**
      * @param string $search_column
      * @param Builder $builder
      * @param array $price

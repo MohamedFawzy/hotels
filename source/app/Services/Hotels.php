@@ -79,7 +79,7 @@ class Hotels implements IService
         // hydrate request
         $data = ['name'=>$name, 'city'=>$city, 'price'=>$price, 'availability'=>$availability];
         $hotelsObject = \App\Hydrator\Hotel::hydrate($data);
-        return $this->repository->store($hotelsObject);
+        return $this->repository->update($hotel, $hotelsObject);
     }
 
     /**
