@@ -58,8 +58,10 @@ Hotels CRUD service api .
 
 # Search, Filters:
 1- Search can by done for range using IN with "," comma separated e.g `29-03-2018,27-04-2018`.
+
 2- Search support IN , equal , LIKE , etc .
-2- Sorting using all columns desc , asc .
+
+3- Sorting using all columns desc , asc .
 
 # Patterns:
 - Factory : hide implementation from client class
