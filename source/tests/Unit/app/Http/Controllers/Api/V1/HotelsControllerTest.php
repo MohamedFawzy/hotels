@@ -47,12 +47,20 @@ class HotelsControllerTest extends TestCase
     public function testSaveNewRowSuccessfully()
     {
         $faker = \Faker\Factory::create();
-        $from  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('now', strtotime('+2 week'))->getTimestamp())));
-        $to  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('+3 week', strtotime('+2 month'))->getTimestamp())));
 
+        $dateFrom1 = date('d-m-Y',$faker->dateTimeBetween('now', strtotime('+2 week'))->getTimestamp());
 
-        $from2  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('+1 week', strtotime('+3 week'))->getTimestamp())));
-        $to2  = new \MongoDB\BSON\UTCDateTime(new DateTime(date('d-m-Y',$faker->dateTimeBetween('+4 week', strtotime('+2 month'))->getTimestamp())));
+        $dateTo1 =date('d-m-Y',$faker->dateTimeBetween('+3 week', strtotime('+2 month'))->getTimestamp());
+
+        $from  = $dateFrom1;
+        $to  = $dateTo1;
+
+        $dateFrom2 = date('d-m-Y',$faker->dateTimeBetween('+1 week', strtotime('+3 week'))->getTimestamp());
+
+        $dateTo2 = date('d-m-Y',$faker->dateTimeBetween('+4 week', strtotime('+2 month'))->getTimestamp());
+
+        $from2  = $dateFrom2;
+        $to2  = $dateTo2;
 
         $data = [
           'name' =>   $faker->name,
@@ -69,7 +77,7 @@ class HotelsControllerTest extends TestCase
                 'to'   => $to2
             ]]
         ];
-        $this->post('/api/v1/hotels', $data)->assertStatus(302);
+        $this->post('/api/v1/hotels', $data)->assertStatus(201);
 
     }
 
